@@ -30,7 +30,6 @@ app.get('/apply/step1', function(req, res){
 });
 
 app.post('/apply/step1', function(req, res){
-    console.log(req.body);
 
     var applicationData = {
         got_experience : req.body.got_experience,
@@ -51,17 +50,13 @@ app.post('/apply/step1', function(req, res){
             });
     });
 
-
-
 });
 
 app.get('/apply/step2/:id', function(req, res){
-    //console.log(req.body);
     res.render('step2', {_id : req.params.id });
 });
 
 app.post('/apply/step2/:id', function(req, res){
-    //console.log(req.body);
     var _id = req.params.id;
 
     var applicationFields = {
@@ -74,8 +69,6 @@ app.post('/apply/step2/:id', function(req, res){
         applications
             .updateOne( { _id : ObjectId(_id) }, {$set : applicationFields})
             .then(function(result){
-                //res.send(result.ops);
-
                 res.redirect('/apply/step3/' + _id );
             })
             .catch(function(err){
@@ -84,9 +77,6 @@ app.post('/apply/step2/:id', function(req, res){
                 res.send(err.stack);
             });
     });
-
-
-    //res.render('step2');
 });
 
 app.get('/apply/step3/:id', function(req, res){
@@ -107,10 +97,6 @@ app.get('/apply/step3/:id', function(req, res){
                 res.send({});
             });
     });
-
-
-    //console.log(req.body);
-    //res.render('step2');
 });
 
 

@@ -11,11 +11,16 @@ To get going:
 * then run `nodemon index.js`
 * open a browser and point to `http://localhost:3007/step1`
 
-Let me know how you get on...
-
-Step one (/apply/step1) adds a new application
-Step rwo
-
-
-
 It will create a mongodb called `step_by_step`
+
+**Let me know how you get on...** And if you need some more help.
+
+## It works like this roughly
+
+* Step one (`/apply/step1`) adds a new application
+* Step two (`/apply/step2/:id`) updates the application just created
+* Step three (`/apply/step3/:id`) shows the state of the entry for :id in the database
+
+## Add more steps
+
+You are going to add more steps... and always use handlebar templates - Step 3 is just for illustration purposes.
