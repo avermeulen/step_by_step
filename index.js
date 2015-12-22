@@ -22,25 +22,26 @@ app.engine('hbs', expressHandlebars({defaultLayout: 'main'}));
 app.set('view engine', 'hbs');
 
 app.get('/', function(req, res){
-    res.render('step1')
+    res.redirect('/apply/step1')
 });
 
-app.get('/step1', function(req, res){
+app.get('/apply/step1', function(req, res){
     res.render('step1')
 });
 
 app.post('/apply/step1', function(req, res){
     console.log(req.body);
 
-    var application = req.body;
+    var applicationData = {
+        got_experience : req.body.got_experience,
+        experience : req.body.experience
+    };
 
     MongoClient.connect(url, function(err, db) {
         var applications = db.collection('applications');
         applications
-            .insertOne(application)
+            .insertOne(applicationData)
             .then(function(result){
-                //res.send(result.ops);
-
                 res.redirect('/apply/step2/' + result.ops[0]._id );
             })
             .catch(function(err){
